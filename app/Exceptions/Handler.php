@@ -43,8 +43,8 @@ class Handler extends ExceptionHandler
             $guard = array_get($exception->guards(),0);
 
             switch($guard){
-                case 'staff':
-                    $login = 'staff.login';
+                case 'rider':
+                    $login = 'rider.login';
                     break;
 
                 default:
@@ -75,6 +75,9 @@ class Handler extends ExceptionHandler
                     case 'admin':
                         $login = 'admin.login';
                         break;
+                    case 'rider':
+                        $login = 'rider.login';
+                        break;
                     default:
                         $login = 'login';
                         break;
@@ -85,12 +88,31 @@ class Handler extends ExceptionHandler
     
         return parent::render($request, $exception);
     }
-    protected function unauthenticated($request, AuthenticationException $exception)
+//     protected function unauthenticated($request, AuthenticationException $exception)
     
-    {
-       return $request->expectsJson()
-               ? response()->json(['message' => 'Unauthenticated.'], 401)
-               : redirect()->guest(route('authentication.index'));
+//     {
+//        return $request->expectsJson()
+//                ? response()->json(['message' => 'Unauthenticated.'], 401)
+//                : redirect()->guest(route('authentication.index'));
+// }
+protected function unauthenticated($request, AuthenticationException $exception)
+{
+    if ($request->expectsJson()) {
+        return response()->json(['error' => 'Unauthenticated.'], 401);
+    }
+    $guard = array_get($exception->guards(), 0);
+    switch ($guard) {
+   case 'admin':
+        $login = 'admin.login';
+        break;
+    case 'rider':
+        $login = 'rider.login';
+        break;
+    default:
+        $login = 'login';
+        break;
+    }
+    return redirect()->guest(route($login));
 }
 }
 

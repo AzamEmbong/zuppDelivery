@@ -18,7 +18,7 @@ use App\delivery_approval_2;
 use Auth;
 
 
-class RiderController extends Controller
+class RiderProcessController extends Controller
 {
 
     
@@ -105,4 +105,5 @@ class RiderController extends Controller
         
     }
   
+    
 }

@@ -55,6 +55,14 @@ return [
             'driver' => 'token',
             'provider' => 'admins',
         ],
+        'rider' => [
+            'driver' => 'session',
+            'provider' => 'riders',
+        ],
+        'rider-api' => [
+            'driver' => 'token',
+            'provider' => 'riders',
+        ],
     ],
 
     /*
@@ -84,10 +92,10 @@ return [
             'model' => App\admin::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'riders' => [
+            'driver' => 'eloquent',
+            'model' =>  App\rider::class,
+        ],
     ],
 
     /*
@@ -113,6 +121,11 @@ return [
         ],
             'admins' => [
                 'provider' => 'admins',
+                'table' => 'password_resets',
+                'expire' => 60,
+            ],
+            'riders' => [
+                'provider' => 'riders',
                 'table' => 'password_resets',
                 'expire' => 60,
             ],

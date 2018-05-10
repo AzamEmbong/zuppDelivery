@@ -3,11 +3,14 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
 
 class rider extends Authenticatable
 {
     use Notifiable;
+
+    protected $guard = 'rider';
 
     /**
      * The attributes that are mass assignable.
@@ -27,4 +30,5 @@ class rider extends Authenticatable
         'password', 'remember_token',
     ];
 }
+
 

@@ -64,7 +64,7 @@ class HomeController extends Controller
         //     return redirect('home');
         // }
         
-        $user_id=Auth::user()->id;
+        $user_id=Auth::rider()->id;
       
         $input = DB::table('delivery_approval_2s')
             ->join('delivery_details_2s','delivery_approval_2s.delivery_id','=','delivery_details_2s.delivery_id')

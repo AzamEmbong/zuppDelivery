@@ -23,10 +23,14 @@ class RedirectIfAuthenticated
               return redirect()->route('admin.dashboard');
             }
             break;
-  
+            case 'rider':
+          if (Auth::guard($guard)->check()) {
+            return redirect()->route('rider.dashboard');
+          }
+          break;
           default:
             if (Auth::guard($guard)->check()) {
-                return redirect('/home');
+                return redirect('/');
             }
             break;
         }

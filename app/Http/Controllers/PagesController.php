@@ -12,8 +12,19 @@ class PagesController extends Controller
 {
     public function index()
     {
-        return view ('index');
-    }
+
+        if(\Auth::check() && \Auth::guard() ) {
+           
+                return redirect()->route('home');
+            }
+           
+            return view('index');
+        }
+        
+        
+       
+   
+    
     public function summary()
     {
         $deliveryDetails = Delivery_details::all()->last();

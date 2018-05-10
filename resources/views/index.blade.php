@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appIndex')
 @section('content')
         <!--<div class="jumbotron text-center">
         <h1>This is Index page</h1>
