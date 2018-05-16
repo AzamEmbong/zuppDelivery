@@ -17,7 +17,7 @@
 {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
 {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}}
     
- <link rel="stylesheet" href="css/bootstraptest.css"> 
+ <link rel="stylesheet" href="{{asset('css/bootstraptest.css')}}"> 
  <script type="text/javascript" src="js/jquery-2.2.4.test.js"></script>
  <script type="text/javascript" src="js/bootstrap.test.js"></script>
  
@@ -40,7 +40,7 @@
 <style>
     body {
     /* The image used */
-    background-image: url("img_parallax.jpg");
+    background-image: url("/img_parallax.jpg");
 
     /* Set a specific height */
     min-height: 500px; 

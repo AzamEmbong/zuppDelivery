@@ -36,5 +36,7 @@ class AdminController extends Controller
         return view('admin.home2',[ 'input'=>$input]);
     }
 
+    
+
  
 }

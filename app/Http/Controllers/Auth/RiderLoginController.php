@@ -31,6 +31,7 @@ class RiderLoginController extends Controller
       // Attempt to log the user in
       if (Auth::guard('rider')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
         // if successful, then redirect to their intended location
+        Auth::shouldUse('rider');
         return redirect()->intended(route('rider.dashboard'));
       } 
       // if unsuccessful, then redirect back to the login with the form data
@@ -41,5 +42,9 @@ class RiderLoginController extends Controller
     {
       Auth::guard('rider')->logout();
       return redirect('rider/login');
+    }
+    protected function guard()
+    {
+        return Auth::guard('rider');
     }
 }

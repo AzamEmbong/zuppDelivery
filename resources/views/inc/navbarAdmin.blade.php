@@ -19,7 +19,7 @@
 </style>
 <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color:#1fb1ef !important">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/home') }}">
+            <a class="navbar-brand" href="{{ url('/admin') }}">
                 <div class="col-md-12">
                     <div class="row">
                 {{ config('app.name', 'zuppDelivery') }}

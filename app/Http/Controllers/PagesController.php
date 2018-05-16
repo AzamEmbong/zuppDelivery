@@ -13,18 +13,29 @@ class PagesController extends Controller
     public function index()
     {
 
-        if(\Auth::check() && \Auth::guard() ) {
-           
-                return redirect()->route('home');
-            }
-           
-            return view('index');
-        }
+    //    if (Auth::guard('admin')->check())
+    //    {
+    //        return redirect()->route('home2');
+    //    }elseif (Auth::guard('rider')->check()) {
+    //     return redirect()->route('home1');
+    //    }elseif (Auth::guard('rider')->check()) {
         
+    //     return redirect()->route('home1');
+    //    }
+    //    else{
+        return view('index');
+    //    }
+               
+       
+       
+        
+    
+        
+        }
+
         
        
-   
-    
+
     public function summary()
     {
         $deliveryDetails = Delivery_details::all()->last();

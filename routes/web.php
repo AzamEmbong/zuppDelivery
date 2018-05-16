@@ -11,10 +11,9 @@
 |
 */
 // customer    
-Route::group(['middleware' => 'revalidate'], function()
-{
-    Route::get('/', 'PagesController@index');
-});
+
+    Route::get('/', 'PagesController@index')->name('index');
+
 
 Route::get('/profile','CusProfileController@profile');
 
@@ -46,17 +45,24 @@ Route::get('/indexQuote', 'RequestController@storeIndex');
 Route::get('/summary', 'PagesController@summary');
 Route::get('/submit', 'PagesController@submit');
 Route::post('/makeReport', 'PagesController@makeReport');
+
+Route::get('/video',function(){
+    $users=App\Userinfo::first();
+    dd($users);
+    $tt=App\Tutorial::first();
+    dd($tt);
+});
 // rider
 Route::group(['middleware' => 'revalidate'], function()
 {
     Route::get('/home1', 'HomeController@index1')->name('home1');
 });
 
-Route::get('/approval', 'RiderController@approval')->name('approval');
-Route::get('/updateStatus/{delivery_id}', 'RiderController@updateStatus');
-Route::get('/updateStatus1/{delivery_id}', 'RiderController@updateStatus1');
-Route::get('/updateStatus2/{delivery_id}', 'RiderController@updateStatus2');
-Route::get('/confirmation/{delivery_id}', 'RiderController@confirmation');
+Route::get('/approval', 'RiderProcessController@approval')->name('approval');
+Route::get('/updateStatus/{delivery_id}', 'RiderProcessController@updateStatus');
+Route::get('/updateStatus1/{delivery_id}', 'RiderProcessController@updateStatus1');
+Route::get('/updateStatus2/{delivery_id}', 'RiderProcessController@updateStatus2');
+Route::get('/confirmation/{delivery_id}', 'RiderProcessController@confirmation');
 Route::prefix('rider')->group(function() {
     Route::get('/login','Auth\RiderLoginController@showLoginForm')->name('rider.login');
     Route::post('/login', 'Auth\RiderLoginController@login')->name('rider.login.submit');
@@ -66,8 +72,8 @@ Route::prefix('rider')->group(function() {
         Route::get('/', 'RiderController@index')->name('rider.dashboard');
     });
        
-    
-   });
+}); 
+  Route::get('/send','MailController@send');
 
 // admin
 Route::group(['middleware' => 'revalidate'], function()
@@ -85,3 +91,5 @@ Route::prefix('admin')->group(function() {
 });
    
    }) ;
+
+
