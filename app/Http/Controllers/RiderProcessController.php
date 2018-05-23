@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Redirect;
+
 use App\File;
 use App\Delivery_details;
 use App\delivery_details_2;
@@ -16,16 +16,22 @@ use App\user;
 use App\delivery_approval;
 use App\delivery_approval_2;
 use Auth;
+use App\rider;
+use Redirect;
 
 
 class RiderProcessController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('auth:rider');
+    }
     
     public function approval()
     {
+       
+       
         $approval = Delivery_details::orderBy('created_at', 'asc')
-        
         ->get();
         return view('rider.approval')->with(['approval'=>$approval]);
     }
@@ -33,23 +39,27 @@ class RiderProcessController extends Controller
 
     public function confirmation($delivery_id)
     {
+       
+   
+
+        $user_id = Auth::id();
 		$in = new delivery_approval;
-        $in->rider_id = Auth::user()->id;
+        $in->rider_id = $user_id;
         $in->delivery_id = $delivery_id;
         $in->status = 1;
 		$in->save();
 
         $input = new delivery_approval_2;
-        $input->rider_id = Auth::user()->id;
+        $input->rider_id = $user_id;
         $input->delivery_id = $delivery_id;
         $input->status = 1;
 		$input->save();
         Delivery_details::find($delivery_id)->delete();
 
         
-        return redirect()->route('home1');
+        return Redirect::to('/rider');
        
-
+    
     }
     public function updateStatus($delivery_id)
     {
@@ -65,7 +75,7 @@ class RiderProcessController extends Controller
             ->update(['status' => 1]);
 
 
-            return redirect()->route('home1');
+            return Redirect::to('/rider');
         
         
     }
@@ -82,7 +92,7 @@ class RiderProcessController extends Controller
             ->where(['delivery_id'=>$delivery_id])
             ->update(['status' => 2]);
 
-            return redirect()->route('home1');
+            return Redirect::to('/rider');
         
         
     }
@@ -100,9 +110,46 @@ class RiderProcessController extends Controller
             ->where(['delivery_id'=>$delivery_id])
             ->update(['status' => 3]);
 
-            return redirect()->route('home1');
+           
+            return Redirect::to('/rider');
         
+    }
+    public function register()
+    {
+        return view('rider.register-rider');
+    }
+
+    public function edit($id)
+    {
+        $rider = rider::find($id);
+        return view('rider.editProfile',['rider'=>$rider]);
+    }
+    public function update(Request $request,$id)
+    {
+        $in = rider::find($id);
+        $in->name = $request->input('name');
+        $in->noTel = $request->input('noTel');
+       
+      
+        $in->vehicle = $request->input('vehicle');
+        $in->plateNo = $request->input('plateNo');
+
+           
+       if($request->hasFile('profile_pic')){
         
+        $fileNameWithExt2 = $request->file('profile_pic')->getClientOriginalName();
+        $fileName2 = pathInfo($fileNameWithExt2,PATHINFO_FILENAME);
+        $extension2 = $request->file('profile_pic')->getClientOriginalExtension();
+        $FileNameStore2 = $fileName2.'_'.time().'.'.$extension2;
+        $path2 = $request->file('profile_pic')->storeAs('public/uploads', $FileNameStore2);
+        
+   }
+     
+       $in->profile_pic = $FileNameStore2;
+       $in->save();
+
+       session()->flash('notif',' Your profile updated!');
+       return Redirect::to('/rider');
     }
   
     

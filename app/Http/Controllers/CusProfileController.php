@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\URL;
 use App\customer_profile;
 use Auth;
 
+use Redirect;
+
 
 class CusProfileController extends Controller
 {
@@ -84,6 +86,38 @@ class CusProfileController extends Controller
        $test = customer_profile::all();
         return view('customer.test');
    }
+   public function edit($id)
+    {
+        $cus = DB::table('customer_profiles')->where('customer_id', '=', $id)
+        
+        ->first(); 
+        return view('customer.editProfileCustomer',['cus'=>$cus]);
+    }
+    public function update(Request $request,$id)
+    {
+        $in = customer_profile::where('customer_id', '=', $id)->first();
+        $in->name = $request->input('name');
+        $in->noTel = $request->input('noTel');
+       
+           
+       if($request->hasFile('profile_pic')){
+        
+        $fileNameWithExt2 = $request->file('profile_pic')->getClientOriginalName();
+        $fileName2 = pathInfo($fileNameWithExt2,PATHINFO_FILENAME);
+        $extension2 = $request->file('profile_pic')->getClientOriginalExtension();
+        $FileNameStore2 = $fileName2.'_'.time().'.'.$extension2;
+        $path2 = $request->file('profile_pic')->storeAs('public/uploads', $FileNameStore2);
+        
+   }
+     
+       $in->profile_pic = $FileNameStore2;
+       $in->save();
+
+       session()->flash('notif',' Your profile updated!');
+       return Redirect::to('/home');
+    }
+  
+    
 }
 
 

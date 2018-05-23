@@ -65,9 +65,9 @@ table tr td:first-child::before {
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-                <div class="card border-danger mb-3">
-            <div class="card" style="background-color:#B82121">
-                <div class="card-header"><h3>Delivery Request Approval</h3></div>
+                
+            <div class="card" >
+                <div class="card-header" style="background-color:#ce9201 !important"><h3>Delivery Request Approval</h3></div>
 
                 <div class="card-body">
                         <div class="container">
@@ -199,7 +199,7 @@ table tr td:first-child::before {
                                                        
                                                      <div style="float:right">
                                                      <a href="#"><button class="btn btn-default" data-toggle="modal" data-target="#{{$approval->delivery_id}}" style="background-color:#1263e5;color:white">Details</button></a>    
-                                                    <a href="/confirmation/{{$approval->delivery_id}}"><button class="btn btn-default" style="background-color:#101110;color:aliceblue" id="approveBtn">Approve</button></a>
+                                                    <a href="/confirmation/{{$approval->delivery_id}}"><button class="btn btn-default" style="background-color:#101110;color:aliceblue" id="approveBtn">Accept</button></a>
                                                     
                                                 </div>
                                                 </td>
@@ -212,7 +212,7 @@ table tr td:first-child::before {
                               
                   </div>
                 </div>
-                </div>
+                
         </div>
             </div>
         </div>

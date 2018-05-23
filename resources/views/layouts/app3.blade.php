@@ -41,7 +41,7 @@
 <style>
     body {
     /* The image used */
-    background-image: url("/img_parallax.jpg");
+    background-image: url("/1.jpg");
 
     /* Set a specific height */
     min-height: 500px; 

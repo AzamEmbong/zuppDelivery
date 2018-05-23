@@ -13,8 +13,13 @@ use Auth;
 
 class RequestController extends Controller
 {
+
     public function store(Request $request)
     {
+		// $this->validate($request, [
+        //     'pickuplocation' => 'required|regex:/\b\d{5}\b/',
+        //     'droplocation' => 'required|regex:/\b\d{5}\b/'
+        // ]);
 		$inputLoc = $request->input('pickupLocation');
 		$dropLocation = $request->input('dropLocation');
 		$item = $request->input('deliveryItemType');
@@ -60,7 +65,10 @@ class RequestController extends Controller
 
 		// $quote = index_quote::all();
 		// return view('customer.quoteDetails')->with(['quote'=> $quote]);
-
+		// $this->validate($request, [
+        //     'pickuplocation' => 'required|regex:/\b\d{5}\b/',
+        //     'droplocation' => 'required|regex:/\b\d{5}\b/'
+        // ]);
 		$inputLoc = $request->input('pickupLocation');
 		$dropLocation = $request->input('dropLocation');
 		$item = $request->input('deliveryItemType');
@@ -127,7 +135,7 @@ class RequestController extends Controller
 		$in->itemNote = $request->input('iNote');
 		$in->save();
 
-		// session()->flash('notif',' nice');
+		// session()->flash('notif',' Wait for your Rider!');
 		$deliveryDetails = Delivery_details::all()->last();
             return view('customer.deliverySummary')->with(['deliveryDetails'=> $deliveryDetails]);
        

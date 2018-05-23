@@ -5,6 +5,7 @@ use Auth;
 use Route;
 use DB;
 use App\rider;
+use App\delivery_details;
 
 class RiderController extends Controller
 {
@@ -24,7 +25,15 @@ class RiderController extends Controller
      */
     public function index()
     {
+        $approval = Delivery_details::orderBy('created_at', 'asc')
+        ->get();
+    
         $user_id=Auth::user()->id;
+        
+        
+        $profile = DB::table('riders')->where('id', '=', $user_id)
+        
+        ->first();
       
         $input = DB::table('delivery_approval_2s')
             ->join('delivery_details_2s','delivery_approval_2s.delivery_id','=','delivery_details_2s.delivery_id')
@@ -35,7 +44,7 @@ class RiderController extends Controller
             ->paginate(3);
             
 
-            return view('rider.home1',['input'=>$input]);
+            return view('rider.home1',['input'=>$input,'profile'=>$profile,'approval'=>$approval]);
        
     }
 }

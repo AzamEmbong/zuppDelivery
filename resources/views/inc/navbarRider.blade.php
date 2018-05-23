@@ -17,7 +17,7 @@
 }
     
 </style>
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color:#B82121 !important">
+<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color:#ce9201 !important">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/rider') }}">
                 <div class="col-md-12">
@@ -50,18 +50,18 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     @guest
-                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                        <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('rider.login') }}">{{ __('Login') }}</a></li>
+                        <li><a class="nav-link" href="{{ url('/rider-register') }}">{{ __('Register') }}</a></li>
                     @else
     
-                    <ul class="nav navbar-nav navbar-center">
+                    {{-- <ul class="nav navbar-nav navbar-center">
                         <li>
                           <button class="btn btn-lg btn-link">
                             <span class="glyphicon glyphicon-envelope"></span>
                             <span class="badge badge-notify">3</span>
                           </button>
                         </li>
-                      </ul>
+                      </ul> --}}
         <div class="container">
                         <li class="nav-item dropdown" >
                             <a id="navbarDropdown"  class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -69,7 +69,7 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/profile">Profile</a>
+                                {{-- <a class="dropdown-item" href="/profile">Profile</a> --}}
                                 <a class="dropdown-item" href="/approval">Approval</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();

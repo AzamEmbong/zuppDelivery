@@ -4,36 +4,36 @@
 @section('content')
 
  
-<div class="jumbotron" style="background-color:#668796">
-        <h5 class="display-4">Report Submission</h5>
-        <form>
-                <div class="form-group">
-                  <label for="exampleFormControlInput1">Date</label>
-                  <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="">
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlSelect1">Rider</label>
-                  <select class="form-control" id="exampleFormControlSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlTextarea1">Enter Your Report</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
+<div class="col-md-6 offset-3">
+    <div class="card" >
+        <div class="card-header" style="background-color:#ce9201 !important;font-weight:bold;font-size: 18px;">Report/Feedback</div>
+        @foreach($user as $n)
+        <div class="card-body">
+        <form action="{{url('/sendReport')}}" method="post">
+          {{ csrf_field() }}
+          <div class="form-group">
+           
+          <label for="name">Name</label>
+          <p>{{$n->name}}</p>
+        
+          </div>
+          <div class="form-group">
+            <label for="report">Report or Feedback</label><br>
+            <textarea class="form-control" rows="5" id="report" name='report'></textarea>
+          </div>
+        </div>
+    
+        <div class="card-footer" >
+        <div style="float:right">
+            <button type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
+        </div>
+        </div>
+        @endforeach
+      </form>
+        </div>
+    
+</div>
 
-                <div class="form-group">
-            
-                        <button type="submit" class="btn btn-primary">
-                            Submit
-                        </button>
-                    </div>
-              </form>
-      </div>
 
 
 

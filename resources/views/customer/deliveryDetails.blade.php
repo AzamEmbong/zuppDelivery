@@ -68,24 +68,24 @@
     }
         div.ex1 {
         padding: 25px;
-        background-color: #112730;
+        /* background-color: #112730; */
         font-family: Courier;
-	    color: white;
+	    /* color: white; */
         margin: 0 auto;
         }
         
         div.ex2 {
         padding: 25px;
-        background-color: #274c5b;
+        /* background-color: #274c5b; */
         font-family: Courier;
-	    color: white;
+	    /* color: white; */
         }
 
         div.ex3 {
         padding: 25px;
-        background-color: #4b7f93;
+        /* background-color: #4b7f93; */
         font-family: Courier;
-	    color: white;
+	    /* color: white; */
         }
 
         .jumbotron
@@ -95,7 +95,7 @@
                    /* you have something in your div with height */
                    /* so you can see your image */
     
-    background-color: #a9e1f9;
+    /* background-color: #a9e1f9; */
      /* define the max width */
      /* define the max width */
  }

@@ -62,8 +62,8 @@ body {
 {{-- <div class="container">
     <div class="row justify-content-center"> --}}
         <div class="col-md-6">
-            <div class="card" style="background-color:#219e83">
-                <div class="card-header" style="font-weight:bold;font-size: 18px;">Profile</div>
+            <div class="card" >
+                <div class="card-header" style="background-color:#ce9201 !important;font-weight:bold;font-size: 18px;">Profile</div>
 
                 <div class="card-body">
                   <div class="col-md-4">
@@ -71,42 +71,67 @@ body {
                           <div class="col-sm-12">
                             <div class="row">
                               <div class="image">
-                              @if(!empty($profile))
-                              <img src="/storage/uploads/{{$profile->profile_pic}}" class="avatar" alt="">
-                              @else
-                              <img src="{{url('images/avatar.png')}}" class="avatar" alt="">
-                              @endif
+                                @if(!empty($profile))
+                                <img src="/storage/uploads/{{$profile->profile_pic}}" class="avatar" alt="">
+                                @else
+                                <img src="{{url('images/avatar.png')}}" class="avatar" alt="">
+                                @endif
                             </div>
                           </div>
                       </div>
                     </div>
-                   <div class="row">
+                  
+                    <div class="col-md-6" >
+                    <div class=" ">
                         @if(!empty($profile))
-                        <h2 class="lead" >{{$profile->name}}</h2>
+                            <label for="name">{{ __('Name') }}</label>
+                            <output id="name">{{$profile->name}}</output>
                         @else
                         <h2></h2>
                         @endif
                     </div>
                    
-                    <div class="row">
+                    <div class=" ">
                         @if(!empty($profile))
-                        <h2 class="lead">{{$profile->dateOfBirth}}</h2>
+                            <label for="dob">{{ __('Dob') }}</label>
+                            <output id="dob">{{$profile->dateOfBirth}}</output>
                         @else
                         <h2></h2>
                         @endif
                     </div>
+
+                    <div class=" ">
+                        @if(!empty($profile))
+                            <label for="dob">{{ __('No. Tel') }}</label>
+                                <output id="dob">{{$profile->noTel}}</output>
+                        @else
+                        <h2></h2>
+                        @endif
+                    </div>
+                    </div>
+                    
+                    
                   
                 
-                  </div>
+                 
                 </div>
-                {{-- </div>
-            </div> --}}
+                <div class="card-footer">
+                        <div style="float:right">
+                                
+                        <a href="/editProfile/{{$profile->id}}"><button type="button" class="btn btn-default" >Edit</button></a>
+                      
+                </div>
+                        </div>
+
+                </div>
+            
         </div>
 
-    
+        @isset($input)
+
         <div class="col-md-6">
-        <div class="card" style="background-color:#219e83">
-            <div class="card-header" style="font-weight:bold;font-size: 18px">
+        <div class="card" >
+            <div class="card-header" style="background-color:#ce9201 !important;font-weight:bold;font-size: 18px">
               Your Delivery Request
             </div>
             <div class="card-body">
@@ -216,7 +241,7 @@ body {
                             </div>
                             </div>
                 <td>
-                        <button type="button"  class="btn btn-default" style="background-color:#219e83;font-weight:bold" data-toggle="modal" data-target="#{{$in->delivery_id}}">#{{$in->delivery_id}} </button>
+                        <button type="button"  class="btn btn-default" style="background-color:#ce9201 !important;background-color:#219e83;font-weight:bold" data-toggle="modal" data-target="#{{$in->delivery_id}}">#{{$in->delivery_id}} </button>
                     
                         @if($in->status =='1')
                         <button disabled="disabled" class="btn btn-default">Processed</button>
@@ -236,7 +261,7 @@ body {
                     <div class="modal fade"  role="dialog" id="1{{$in->delivery_id}}" >
                         <div class="modal-dialog modal-center">
                             <div class="modal-content">
-                                <div class="modal-header">
+                                <div class="modal-header"style="background-color:#ce9201 !important">
                                     
                                     <h4 class="modal-title">Report</h4>
                                 </div>
@@ -276,12 +301,16 @@ body {
                     <div style="float:right">
                         
                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#1{{$in->delivery_id}}">Report</button>
-                      <button type="button"  class="btn btn-default" style="background-color:#219e83;font-weight:bold">Delete </button>
+                      <button type="button"  class="btn btn-default" style="font-weight:bold">Delete </button>
                     </div>
                       
                   </td>
                
             </tr>
+            <script>
+                $("#submitForm").on('click', function() {
+                   $("#contact_form{{$in->delivery_id}}").submit();
+               });</script>
             @endforeach
         </table>
        
@@ -298,10 +327,15 @@ body {
             </div>
           </div>
         </div> 
+        
+
+        {{-- new customer --}}
+        @endisset
+       
 </div>
 <br>
 <!-- request -->
-<div style="background:#219e83" class="jumbotron">
+<div  style="background-color:#ce9201 !important" class="jumbotron">
     <div class="index-app-news spacial-features home-instant-quote">
         <div class="container quote">
           <div class="row quote-form">
@@ -314,18 +348,12 @@ body {
                 <div class="form-group col-12 col-md-3">
                   <label for="pickupLocation">From</label>
                   <input id="pickupLocation" name="pickupLocation" class="form-control" type="text" value="" placeholder="Postcode, Country or Street / City / Country" onfocus="clearPickupLocation()" onblur="clearPickupLocation()" required>
-                  <input id="pickupLat" name="pickupLat" type="hidden" />
-                  <input id="pickupLng" name="pickupLng" type="hidden" />
-                  <input id="pickupZipcode" name="pickupZipcode" type="hidden" />
-                  <input id="pickupCountry" name="pickupCountry" type="hidden" />
+                  
                 </div>
                 <div class="form-group col-12 col-md-3">
                   <label for="dropLocation">To</label>
                   <input id="dropLocation" name="dropLocation" class="form-control" type="text" value="" placeholder="Postcode, Country or Street / City / Country" onfocus="clearDropLocation()" onblur="clearDropLocation()" required>
-                  <input id="dropLat" name="dropLat" type="hidden" />
-                  <input id="dropLng" name="dropLng" type="hidden" />
-                  <input id="dropZipcode" name="dropZipcode" type="hidden" />
-                  <input id="dropCountry" name="dropCountry" type="hidden" />
+                  
                 </div>
                 <div class="form-group col-12 col-md-3">
                   <label for="deliveryItemType">Item</label>
@@ -420,9 +448,6 @@ body {
         }
        </script>
        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_kQBK98xOeeDPSEZbZKUi0wn2-vDbWjU&libraries=places&region=my&callback=activatePlacesSearch"></script>
-     <script>
-     $("#submitForm").on('click', function() {
-        $("#contact_form{{$in->delivery_id}}").submit();
-    });</script>
+     
 
 @endsection

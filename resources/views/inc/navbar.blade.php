@@ -7,7 +7,7 @@
     }
     
 </style>
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color:#219e83 !important">
+<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color:#ce9201 !important" >
         <div class="container">
             <a class="navbar-brand" href="{{ url('/home') }}">
                 {{ config('app.name', 'zuppDelivery') }}
@@ -32,7 +32,7 @@
                     <!-- Authentication Links -->
                     @guest
                         <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                        <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                        {{-- <li><a class="nav-link" href="{{url('/register')}}<">{{ __('Register') }}</a></li> --}}
                     @else
     
 
@@ -43,7 +43,8 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/profile">Profile</a>
+                                
+                                <a class="dropdown-item" href="/report">Report/Feedback</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">

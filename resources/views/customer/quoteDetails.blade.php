@@ -70,7 +70,7 @@
 
 <br>
 
-<div class="jumbotron" style="background-color:#00F3FF;margin-top:115px">
+<div  class="jumbotron" style="background-color:#ce9201 !important;margin-top:115px">
         <div class="container">
                 <div class="form-group">
             
@@ -112,7 +112,7 @@
                             </div>
                                 <div class="modal-body">
                                  
-                                 <p>You need to <a href="{{ route('login') }}" class="tooltip-test" title="Tooltip">Log In</a> or <a href="{{ route('register') }}" >Register</a> to proceed</p>
+                                 {{-- <p>You need to <a href="{{ route('login') }}" class="tooltip-test" title="Tooltip">Log In</a> or <a href="{{ route('register') }}" >Register</a> to proceed</p> --}}
                                 </div>
                                 <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

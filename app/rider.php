@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-
 class rider extends Authenticatable
 {
     use Notifiable;
@@ -18,9 +17,8 @@ class rider extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','noTel','IC','zipcode','vehicle','plateNo','license','ICFile','profile_pic'
     ];
-
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -30,5 +28,3 @@ class rider extends Authenticatable
         'password', 'remember_token',
     ];
 }
-
-

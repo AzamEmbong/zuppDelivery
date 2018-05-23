@@ -1,7 +1,6 @@
 @extends('layouts.app2')
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style type="text/css">
   .avatar{
     border-radius:50%;
@@ -68,55 +67,96 @@ body {
 @section('content')
 
 <div class="row">
-    <div class="col-md-6">
-
-      
-            <div class="card" style="background-color:#B82121">
-                <div class="card-header"><h3>Profile</h3></div>
-
-                <div class="card-body">
-                  <div class="col-md-4">
-                    
-                          <div class="col-sm-12">
-                            <div class="row">
-                              <div class="image">
-                              @if(!empty($profile))
-                              <img src="/storage/uploads/{{$profile->profile_pic}}" class="avatar" alt="">
-                              @else
-                              <img src="{{url('images/avatar.png')}}" class="avatar" alt="">
-                              @endif
+    
+        {{-- <div class="container">
+            <div class="row justify-content-center"> --}}
+                <div class="col-md-6">
+                    <div class="card" >
+                        <div class="card-header" style="font-weight:bold;font-size: 18px;background-color:#ce9201 !important">Profile</div>
+        
+                        <div class="card-body">
+                          <div class="col-md-4">
+                            
+                                  <div class="col-sm-12">
+                                    <div class="row">
+                                      <div class="image">
+                                        @if(!empty($profile))
+                                        <img src="/storage/uploads/{{$profile->profile_pic}}" class="avatar" alt="">
+                                        @else
+                                        <img src="{{url('images/avatar.png')}}" class="avatar" alt="">
+                                        @endif
+                                    </div>
+                                  </div>
+                              </div>
                             </div>
+                          
+                            <div class="col-md-6" >
+                            <div class=" ">
+                                @if(!empty($profile))
+                                    <label for="name">{{ __('Name') }}</label>
+                                    <output id="name">{{$profile->name}}</output>
+                                @else
+                                <h2></h2>
+                                @endif
+                            </div>
+                           
+                            <div class=" ">
+                                @if(!empty($profile))
+                                    <label for="dob">{{ __('Identification No.') }}</label>
+                                        <output id="dob">{{ $profile->IC }}</output>
+                                @else
+                                <h2></h2>
+                                @endif
+                            </div>
+        
+                            <div class=" ">
+                                @if(!empty($profile))
+                                    <label for="dob">{{ __('No. Tel') }}</label>
+                                        <output id="dob">{{$profile->noTel}}</output>
+                                @else
+                                <h2></h2>
+                                @endif
+                            </div>
+        
+                            <div class=" ">
+                                @if(!empty($profile))
+                                    <label for="dob">{{ __('Vehicle') }}</label>
+                                        <output id="dob">{{$profile->vehicle}}</output>
+                                @else
+                                <h2></h2>
+                                @endif
+                            </div>
+        
+                            <div class=" ">
+                                @if(!empty($profile))
+                                    <label for="dob">{{ __('Plat No.') }}</label>
+                                        <output id="dob">{{$profile->plateNo}}</output>
+                                @else
+                                <h2></h2>
+                                @endif
+                            </div>
+                          
+                        
                           </div>
-                      </div>
-                    </div>
-                   <div class="row">
-                        @if(!empty($profile))
-                        <h2 class="lead" >{{$profile->name}}</h2>
-                        @else
-                        <h2></h2>
-                        @endif
-                    </div>
-                   
-                    <div class="row">
-                        @if(!empty($profile))
-                        <h2 class="lead">{{$profile->dateOfBirth}}</h2>
-                        @else
-                        <h2></h2>
-                        @endif
-                    </div>
-                  
-                
-                  </div>
+                        </div>
+                <div class="card-footer">
+                <div style="float:right">
+                        
+                <a href="/editProfile1/{{$profile->id}}"><button type="button" class="btn btn-default" ><strong>Edit</strong></button></a>
+              
+        </div>
                 </div>
-                
-           
-    </div>
+                        </div>
+                    
+                </div>
+        
         <br>
+        @isset($input)  
         <div class="col-md-6">
         
-        <div class="card" style="background-color:#B82121">
+        <div class="card" >
            
-            <div class="card-header">
+            <div class="card-header" style="background-color:#ce9201 !important">
               <h3> Delivery Status </h3>
             </div>
                 
@@ -261,11 +301,12 @@ body {
                         {!! $input->render() !!}
                     </div>
                     </div>
-             
+                  
             </div>
-       
+            @endisset
           </div>
             
         </div>
     </div>
     @endsection
+    

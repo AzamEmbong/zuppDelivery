@@ -22,7 +22,8 @@ Route::group(['middleware' => 'revalidate'], function()
 {
     Route::get('/home', 'HomeController@index')->name('home');
 });
-
+Route::post('/customer-register','CustomerRegisterController@register');
+Route::get('/register','CustomerRegisterController@form');
 Route::get('/profile','CusProfileController@profile');
 
 Route::get('/deliveryDetails','CusProfileController@deliveryDetails');
@@ -45,19 +46,20 @@ Route::get('/indexQuote', 'RequestController@storeIndex');
 Route::get('/summary', 'PagesController@summary');
 Route::get('/submit', 'PagesController@submit');
 Route::post('/makeReport', 'PagesController@makeReport');
+Route::post('/sendReport', 'Report@submit');
+Route::get('/test','test@test');
+Route::get('/editProfile/{id}', 'CusProfileController@edit');
+Route::put('/updateProfile/{id}', 'CusProfileController@update');
 
-Route::get('/video',function(){
-    $users=App\Userinfo::first();
-    dd($users);
-    $tt=App\Tutorial::first();
-    dd($tt);
-});
 // rider
 Route::group(['middleware' => 'revalidate'], function()
 {
     Route::get('/home1', 'HomeController@index1')->name('home1');
 });
-
+Route::get('/rider-register', 'RiderRegisterController@register')->name('rider.register');
+Route::get('/editProfile1/{id}', 'RiderProcessController@edit');
+Route::put('/updateProfile1/{id}', 'RiderProcessController@update');
+Route::post('/addRider', 'RiderRegisterController@addRider');
 Route::get('/approval', 'RiderProcessController@approval')->name('approval');
 Route::get('/updateStatus/{delivery_id}', 'RiderProcessController@updateStatus');
 Route::get('/updateStatus1/{delivery_id}', 'RiderProcessController@updateStatus1');
@@ -76,7 +78,11 @@ Route::prefix('rider')->group(function() {
   Route::get('/send','MailController@send');
 
 // admin
+Route::get('/approveReg/{id}', 'AdminController@approveReg');
+Route::get('/list', 'AdminController@list');
+Route::get('/terminate/{id}', 'AdminController@terminate');
 Route::group(['middleware' => 'revalidate'], function()
+
 {
     Route::get('/home2', 'HomeController@index2')->name('home2');
 });

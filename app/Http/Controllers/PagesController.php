@@ -7,6 +7,7 @@ use App\Delivery_details;
 use App\report;
 use Auth;
 use DB;
+use Redirect;
 
 class PagesController extends Controller
 {
@@ -43,18 +44,18 @@ class PagesController extends Controller
     }
     public function submit()
     {
-        $user_id=Auth::user()->id;
-        $profile = DB::table('users')
-                    ->join('customer_profiles','users.id','=','customer_profiles.customer_id')
-                    ->select('users.*','customer_profiles.*')
-                    ->where(['customer_profiles.customer_id'=>$user_id])
-                    ->first();
+        // $user_id=Auth::user()->id;
+        // $profile = DB::table('users')
+        //             ->join('customer_profiles','users.id','=','customer_profiles.customer_id')
+        //             ->select('users.*','customer_profiles.*')
+        //             ->where(['customer_profiles.customer_id'=>$user_id])
+        //             ->first();
        
        
         
     
         session()->flash('notif',' Your delivery request has been registered.');
-        return view('home',['profile'=>$profile]);
+        return Redirect::to('/home');
     }
 
     public function makeReport(Request $request)

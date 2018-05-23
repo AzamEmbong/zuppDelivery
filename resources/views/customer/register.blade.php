@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header" style="background-color:#ce9201 !important"><strong>{{ __('Register') }}</strong></div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ url('/customer-register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -58,6 +58,48 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Date Of Birth') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="date" type="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" name="date" value="{{ old('date') }}" required autofocus>
+
+                                @if ($errors->has('date'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('date') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="noTel" class="col-md-4 col-form-label text-md-right">{{ __('No. Tel') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="notel" type="text" class="form-control{{ $errors->has('noTel') ? ' is-invalid' : '' }}" name="noTel" value="{{ old('noTel') }}" required autofocus>
+
+                                @if ($errors->has('noTel'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('noTel') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="profile_pic" class="col-md-4 col-form-label text-md-right">User Photo</label>
+
+                            <div class="col-md-6">
+                                <input id="profile_pic" name="profile_pic" type="file" class="form-control{{ $errors->has('profile_pic') ? ' is-invalid' : '' }}" value="profile_pic"  required>
+
+                                @if ($errors->has('profile_pic'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('profile_pic') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

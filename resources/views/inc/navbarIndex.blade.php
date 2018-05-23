@@ -7,7 +7,7 @@
     }
     
 </style>
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color:#219e83 !important">
+<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color:#ce9201 !important" >
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'zuppDelivery') }}
@@ -32,7 +32,7 @@
                   
                         <li><a class="nav-link" href="{{ route('rider.login') }}">{{ __('Rider Login') }}</a></li>
                         <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                        <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                        <li><a class="nav-link" href="{{url('/register')}}">{{ __('Register') }}</a></li>
 
     
 

@@ -15,9 +15,17 @@ class CreateRidersTable extends Migration
     {
         Schema::create('riders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->String('name');
+            $table->String('email');
+            $table->String('password');
+            $table->String('noTel');
+            $table->String('IC');
+            $table->String('zipcode');
+            $table->String('vehicle');
+            $table->String('plateNo');
+            $table->String('license');
+            $table->String('ICFile');
+            $table->String('profile_pic');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRiderProfilesTable extends Migration
+class CreateRiderFullsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,18 @@ class CreateRiderProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rider_profiles', function (Blueprint $table) {
-            $table->increments('profile_id');
-            $table->integer('rider_id')->unsigned();
-            $table->foreign('rider_id')->references('id')->on('users');
+        Schema::create('rider_fulls', function (Blueprint $table) {
+            $table->increments('id');
             $table->String('name');
-            $table->String('dateOfBirth');
+            $table->String('email');
+            $table->String('password');
             $table->String('noTel');
+            $table->String('IC');
+            $table->String('zipcode');
+            $table->String('vehicle');
+            $table->String('plateNo');
+            $table->String('license');
+            $table->String('ICFile');
             $table->String('profile_pic');
             $table->timestamps();
         });
@@ -32,6 +37,6 @@ class CreateRiderProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rider_profiles');
+        Schema::dropIfExists('rider_fulls');
     }
 }
